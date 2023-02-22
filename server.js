@@ -12,12 +12,15 @@ const errorHandler = require('./middleware/error')
 const csrfProtection = csrf({
     cookie: {
         httpOnly: true,
+        secure: true,
     },
 })
 
 // create express app
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: "https://fido-wep-app.onrender.com"
+}))
 
 // Connect DB
 db.connect()
